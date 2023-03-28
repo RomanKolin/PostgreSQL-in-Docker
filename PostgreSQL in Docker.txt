@@ -1,0 +1,14 @@
+sudo docker pull portainer/portainer
+sudo docker volume create Portainer
+sudo docker run -d -p 1234:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_vol:/data --restart always --name Portainer portainer/portainer
+mkdir MyPostgreSQL
+cd MyPostgreSQL
+vi Install.sh
+vi Run.sh
+vi Dockerfile
+sudo docker build -t mypostgresql .
+sudo docker run -d -p 2345:5432 --name MyPostgreSQL mypostgresql
+vi /home/postgres/pgdata/postgresql.conf
+vi /home/postgres/pgdata/pg_hba.conf
+ALTER USER postgres WITH PASSWORD 'IT2017year';
+CREATE DATABASE f;
